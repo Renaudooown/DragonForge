@@ -1,12 +1,11 @@
 import { transport } from "@/data/transport";
-import { Reveal } from "@/components/Reveal";
 import { VenueMoment } from "@/components/VenueMoment";
 
 export function GettingThereSection() {
   return (
     <div id="getting-there" className="scroll-mt-20">
       <section className="bg-charcoal px-5 py-16 text-ivory sm:px-10 sm:py-24 lg:px-16">
-        <Reveal className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-5xl">
           <p className="text-[0.7rem] uppercase tracking-[0.32em] text-forge">
             {transport.kicker}
           </p>
@@ -28,11 +27,11 @@ export function GettingThereSection() {
               {transport.arrival.windowNote}
             </p>
           </div>
-        </Reveal>
+        </div>
       </section>
 
       <section className="px-5 py-16 sm:px-10 sm:py-24 lg:px-16">
-        <Reveal className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-6xl">
           <h3 className="font-display text-3xl tracking-tight text-ink sm:text-4xl">
             {transport.hubsIntro}
           </h3>
@@ -55,7 +54,7 @@ export function GettingThereSection() {
               </article>
             ))}
           </div>
-        </Reveal>
+        </div>
       </section>
 
       <VenueMoment />

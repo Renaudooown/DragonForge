@@ -1,13 +1,12 @@
 import { venueIntro, venueMoments } from "@/data/venue";
 import { MediaSlot } from "@/components/MediaSlot";
-import { Reveal } from "@/components/Reveal";
 
 export function VenueMoment() {
   const [aerial, ...rest] = venueMoments;
 
   return (
     <section className="px-4 py-20 sm:px-8 sm:py-28 lg:px-12">
-      <Reveal className="mx-auto max-w-[1440px]">
+      <div className="mx-auto max-w-[1440px]">
         <p className="text-[0.7rem] uppercase tracking-[0.32em] text-muted">
           {venueIntro.kicker}
         </p>
@@ -15,7 +14,7 @@ export function VenueMoment() {
           {venueIntro.title}
         </h2>
         <p className="mt-5 max-w-xl text-lg text-ink-soft">{venueIntro.body}</p>
-      </Reveal>
+      </div>
 
       <div className="mx-auto mt-12 max-w-[1440px] sm:mt-16">
         <MediaSlot

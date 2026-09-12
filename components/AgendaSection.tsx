@@ -1,7 +1,6 @@
 import type { AgendaDay, AgendaItem } from "@/data/agenda";
 import { agenda } from "@/data/agenda";
 import { MediaSlot } from "@/components/MediaSlot";
-import { Reveal } from "@/components/Reveal";
 import { publicAssetExists } from "@/lib/publicAsset";
 
 const choiceTints = ["#C6B48A", "#A9B6A7", "#D2C4B0", "#B7AB90"];
@@ -84,13 +83,14 @@ function DayChapter({ day }: { day: AgendaDay }) {
 
   return (
     <div
+      id={day.id}
       className={
         isHeart
           ? "bg-ivory-2 px-5 py-12 sm:px-10 sm:py-16 lg:px-16"
           : "px-5 py-12 sm:px-10 sm:py-16 lg:px-16"
       }
     >
-      <Reveal className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-3xl">
         <p className="font-display text-5xl leading-none tracking-tight text-ink sm:text-6xl">
           {day.weekday}
         </p>
@@ -107,15 +107,15 @@ function DayChapter({ day }: { day: AgendaDay }) {
             />
           ))}
         </div>
-      </Reveal>
+      </div>
     </div>
   );
 }
 
 export function AgendaSection() {
   return (
-    <section id="agenda" className="scroll-mt-24 pb-8">
-      <Reveal className="px-5 pt-8 pb-4 sm:px-10 lg:px-16">
+    <section id="agenda" className="scroll-mt-20 pb-8">
+      <div className="px-5 pt-8 pb-4 sm:px-10 lg:px-16">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-display text-5xl leading-none tracking-tight text-ink sm:text-6xl md:text-7xl">
             {agenda.title}
@@ -124,7 +124,7 @@ export function AgendaSection() {
             {agenda.subtitle}
           </p>
         </div>
-      </Reveal>
+      </div>
 
       {agenda.days.map((day) => (
         <DayChapter key={day.id} day={day} />

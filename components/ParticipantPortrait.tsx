@@ -33,7 +33,7 @@ export function ParticipantPortrait({ participant }: { participant: Participant 
         )}
       </div>
       <h3 className="mt-4 font-display text-xl leading-tight text-ink transition-colors duration-200 group-hover:text-forge sm:text-[1.35rem]">
-        {participant.firstName} {participant.lastName}
+        {fullName}
       </h3>
       {participant.organisation ? (
         <p className="mt-1 text-sm tracking-wide text-muted">

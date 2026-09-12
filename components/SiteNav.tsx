@@ -29,7 +29,7 @@ export function SiteNav() {
           setActive(visible.target.id);
         }
       },
-      { rootMargin: "-35% 0px -45% 0px", threshold: [0.1, 0.25, 0.5] },
+      { rootMargin: "-25% 0px -55% 0px", threshold: [0, 0.1, 0.25] },
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -71,6 +71,7 @@ export function SiteNav() {
                 key={item.id}
                 href={item.href}
                 aria-current={isActive ? "location" : undefined}
+                onClick={() => setActive(item.id)}
                 className={`text-[15px] tracking-wide transition-colors duration-200 ${
                   isActive ? "text-forge" : "text-ink/80 hover:text-forge"
                 }`}

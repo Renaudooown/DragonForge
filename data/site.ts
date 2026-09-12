@@ -10,6 +10,10 @@ export const site = {
   positioning: "A private retreat for the next generation of GPs and LPs.",
   bridge:
     "Three days in the South of France. Good people, time outside, and conversations worth having.",
+  bridgeLines: [
+    "Three days in the South of France.",
+    "Good people, time outside, and conversations worth having.",
+  ],
   footerLine: "See you in the South of France.",
 } as const;
 

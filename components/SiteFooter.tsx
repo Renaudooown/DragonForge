@@ -3,7 +3,7 @@ import { site } from "@/data/site";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-charcoal px-5 py-16 text-ivory sm:px-10 sm:py-20 lg:px-16">
+    <footer className="bg-charcoal px-5 py-16 text-ivory sm:px-10 sm:py-24 lg:px-16">
       <div className="mx-auto max-w-5xl text-center">
         <Image
           src="/brand/dragonforge-logo-on-dark.png"

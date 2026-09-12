@@ -40,8 +40,10 @@ export function Hero() {
         </div>
       </section>
 
-      <p className="mx-auto max-w-3xl px-6 pb-24 text-center font-display text-2xl leading-snug text-ink italic sm:pb-32 sm:text-4xl md:text-[2.75rem] md:leading-tight">
-        {site.bridge}
+      <p className="mx-auto max-w-3xl px-6 pb-32 text-center font-display text-2xl leading-snug text-pretty text-ink italic sm:pb-40 sm:text-4xl md:text-[2.75rem] md:leading-tight">
+        {site.bridgeLines[0]}
+        <br />
+        {site.bridgeLines[1]}
       </p>
     </>
   );

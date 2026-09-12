@@ -39,6 +39,11 @@ body {
   outline-offset: 3px;
 }
 
+h2,
+h3 {
+  text-wrap: balance;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
