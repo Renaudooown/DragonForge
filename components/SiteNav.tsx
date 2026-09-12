@@ -44,7 +44,7 @@ export function SiteNav() {
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-4 py-3 sm:px-8 lg:px-12">
+      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-4 py-2.5 sm:px-8 lg:px-12">
         <a href="#top" className="shrink-0" aria-label={`${site.title} — back to top`}>
           <Image
             src="/brand/dragonforge-mark.png"

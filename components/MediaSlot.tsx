@@ -8,6 +8,10 @@ type MediaSlotProps = {
   placeholderTint?: string;
   aspect?: string;
   className?: string;
+  priority?: boolean;
+  sizes?: string;
+  still?: boolean;
+  objectPosition?: string;
 };
 
 export function MediaSlot({
@@ -17,6 +21,10 @@ export function MediaSlot({
   placeholderTint = "#D4C6B3",
   aspect = "aspect-[4/3]",
   className = "",
+  priority = false,
+  sizes = "(max-width: 768px) 100vw, 50vw",
+  still = false,
+  objectPosition,
 }: MediaSlotProps) {
   const hasImage = publicAssetExists(src);
 
@@ -28,8 +36,14 @@ export function MediaSlot({
             src={src}
             alt={label}
             fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover transition-transform duration-700 ease-out hover:scale-[1.03]"
+            priority={priority}
+            sizes={sizes}
+            className={
+              still
+                ? "object-cover"
+                : "object-cover transition-transform duration-700 ease-out hover:scale-[1.03]"
+            }
+            style={objectPosition ? { objectPosition } : undefined}
           />
         ) : (
           <div
@@ -47,7 +61,7 @@ export function MediaSlot({
         )}
       </div>
       {caption ? (
-        <figcaption className="mt-3 text-sm tracking-wide text-muted">
+        <figcaption className="mt-2 text-sm tracking-wide text-muted">
           {caption}
         </figcaption>
       ) : null}

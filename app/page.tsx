@@ -1,4 +1,5 @@
 import { AgendaSection } from "@/components/AgendaSection";
+import { CinematicVenue } from "@/components/CinematicVenue";
 import { GettingThereSection } from "@/components/GettingThereSection";
 import { Hero } from "@/components/Hero";
 import { PeopleSection } from "@/components/PeopleSection";
@@ -11,6 +12,7 @@ export default function Home() {
       <SiteNav />
       <main>
         <Hero />
+        <CinematicVenue />
         <PeopleSection />
         <GettingThereSection />
         <AgendaSection />

@@ -4,6 +4,15 @@
  * Do not invent shuttle times here. Pickup groups are confirmed closer to the retreat.
  * Set `driving.googleMapsUrl` when the exact Maps link is ready.
  */
+export type TransportHub = {
+  n: string;
+  name: string;
+  kind: string;
+  distance?: string;
+  duration?: string;
+  note?: string;
+};
+
 export const transport = {
   kicker: "Getting there",
   promise: "We’ll get you to the Domaine.",
@@ -21,25 +30,24 @@ export const transport = {
     {
       n: "01",
       name: "Marseille Provence Airport",
-      details: [
-        "Approx. 120 km from the Domaine",
-        "Approx. 1h10 by road",
-      ],
+      kind: "Airport",
+      distance: "120 km",
+      duration: "1h10",
     },
     {
       n: "02",
       name: "Marseille Saint-Charles",
-      details: ["Some participants will arrive here by train."],
+      kind: "Train",
+      note: "Some participants will arrive here by train.",
     },
     {
       n: "03",
       name: "Avignon TGV",
-      details: [
-        "Approx. 60 km from the Domaine",
-        "Approx. 45 minutes by road",
-      ],
+      kind: "Train",
+      distance: "60 km",
+      duration: "45 min",
     },
-  ],
+  ] satisfies TransportHub[],
   independent: {
     title: "Travelling independently",
     intro: "Other nearby stations, if you’re making your own way:",

@@ -11,6 +11,14 @@ export type VenueMoment = {
   caption: string;
   placeholderTint: string;
   aspect: string;
+  objectPosition?: string;
+};
+
+export const cinematicVenue = {
+  src: "/venue/landscape.jpg",
+  label: "Domaine de Valbonne",
+  caption: "Domaine de Valbonne",
+  placeholderTint: "#B7AB90",
 };
 
 export const venueIntro = {
@@ -22,7 +30,7 @@ export const venueIntro = {
 export const venueMoments: VenueMoment[] = [
   {
     src: "/venue/aerial.jpg",
-    label: "Aerial view",
+    label: "Gathering by the pool",
     caption: "The estate from above",
     placeholderTint: "#C6B48A",
     aspect: "aspect-[16/9] md:aspect-[2.2/1]",
@@ -30,9 +38,10 @@ export const venueMoments: VenueMoment[] = [
   {
     src: "/venue/courtyard.jpg",
     label: "Courtyard dinner",
-    caption: "Outdoor tables",
+    caption: "Under the stars",
     placeholderTint: "#CDB59A",
-    aspect: "aspect-[4/3]",
+    aspect: "aspect-[4/5] md:aspect-[4/3]",
+    objectPosition: "center 72%",
   },
   {
     src: "/venue/pool.jpg",
@@ -40,12 +49,6 @@ export const venueMoments: VenueMoment[] = [
     caption: "Late-day water",
     placeholderTint: "#A9B6A7",
     aspect: "aspect-[4/3]",
-  },
-  {
-    src: "/venue/landscape.jpg",
-    label: "Landscape",
-    caption: "Provençal surroundings",
-    placeholderTint: "#B7AB90",
-    aspect: "aspect-[4/3]",
+    objectPosition: "center 60%",
   },
 ];

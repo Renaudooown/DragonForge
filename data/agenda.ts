@@ -16,6 +16,10 @@ export type AgendaItem = {
   note?: string;
   tone?: "default" | "choice" | "playful";
   choices?: AgendaChoice[];
+  image?: string;
+  imageLabel?: string;
+  imageCaption?: string;
+  imagePosition?: string;
 };
 
 export type AgendaDay = {
@@ -83,11 +87,16 @@ export const agenda = {
           time: "Afternoon",
           title: "Back to the Domaine",
           description: "Pool, downtime, hanging out.",
+          image: "/venue/pool.jpg",
+          imageLabel: "Pool time",
+          imageCaption: "Back at the Domaine",
         },
         {
           time: "17:30",
           title: "Wine tasting",
           note: "Optional",
+          image: "/activities/wine.jpg",
+          imageLabel: "Wine tasting",
         },
         {
           time: "19:30",
@@ -97,6 +106,10 @@ export const agenda = {
           time: "22:00 onwards",
           title: "Party",
           tone: "playful",
+          image: "/venue/courtyard.jpg",
+          imageLabel: "The night",
+          imageCaption: "Under the stars",
+          imagePosition: "center 72%",
         },
       ],
     },

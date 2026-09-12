@@ -11,32 +11,32 @@ export function ParticipantPortrait({ participant }: { participant: Participant 
 
   return (
     <article className="group">
-      <div className="relative aspect-[3/4] overflow-hidden">
+      <div className="relative aspect-[4/5] overflow-hidden">
         {hasImage ? (
           <Image
             src={encodeURI(participant.image)}
             alt={fullName}
             fill
-            sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
+            sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           />
         ) : (
           <div
-            className="flex h-full items-end p-4 sm:p-5"
+            className="flex h-full items-end p-3 sm:p-4"
             style={{ backgroundColor: tint }}
             aria-hidden="true"
           >
-            <span className="font-display text-4xl leading-none text-ink/80 italic sm:text-5xl">
+            <span className="font-display text-3xl leading-none text-ink/80 sm:text-4xl">
               {letters}
             </span>
           </div>
         )}
       </div>
-      <h3 className="mt-4 font-display text-xl leading-tight text-ink transition-colors duration-200 group-hover:text-forge sm:text-[1.35rem]">
+      <h3 className="mt-2.5 font-display text-[1.15rem] leading-tight text-ink transition-colors duration-200 group-hover:text-forge sm:text-xl">
         {fullName}
       </h3>
       {participant.organisation ? (
-        <p className="mt-1 text-sm tracking-wide text-muted">
+        <p className="mt-0.5 text-[0.8rem] tracking-wide text-muted sm:text-sm">
           {participant.organisation}
         </p>
       ) : null}
