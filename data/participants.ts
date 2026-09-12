@@ -42,7 +42,6 @@ export const participants: Participant[] = [
   person("Francesca", "Baillieu", undefined, "/people/Francesca-baillieu.jpg .jpeg"),
   person("Kajsa", "Hammar", "ETF Partners", "/people/Kajsa-hammar.jpg .jpeg"),
   person("Tilly", "Fleming", "Octopus Ventures", "/people/Tilly-fleming.jpg .jpeg"),
-  person("Alexander", "Ehlert", "PLMJ"),
   person("Sabrina", "Senzel", "KfW", "/people/Sabrina-senzel.jpg .png"),
   person("Paul", "Viehauser", "Akari Capital", "/people/Paul-viehauser.jpg .png"),
   person("Haralds", "Abolins", "Positron", "/people/Haralds-abolins.jpg .jpeg"),
