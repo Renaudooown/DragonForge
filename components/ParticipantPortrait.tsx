@@ -14,7 +14,7 @@ export function ParticipantPortrait({ participant }: { participant: Participant 
       <div className="relative aspect-[3/4] overflow-hidden">
         {hasImage ? (
           <Image
-            src={participant.image}
+            src={encodeURI(participant.image)}
             alt={fullName}
             fill
             sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
