@@ -51,7 +51,7 @@ export const participants: Participant[] = [
   person("Jai", "Taylor", "Blue Wire Capital", "/people/Jai-Taylor.jpg .jpeg"),
   person("Abel", "Samot", "Commit", "/people/Abel-Samot.jpg .png"),
   person("Alexandra", "Woodman", "British Business Bank", "/people/Alexandra-woodman.jpg .jpeg"),
-  person("Davyd", "Gromenko", "RSJ Investments"),
+  person("Davyd", "Gromenko", "RSJ Investments", "/people/davyd-gromenko.png"),
   person("Nadine", "Geiser", undefined, "/people/Nadine-Geiser.jpg .jpeg"),
   person("Tobias", "Reimann-Dubbers", "BNVT Capital", "/people/Tobias-Reimann-Dubbers.jpg .jpeg"),
   person("Alexander", "Wagner", "Heliad", "/people/Alexander-Wagner.jpg .jpeg"),

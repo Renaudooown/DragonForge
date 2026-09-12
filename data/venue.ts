@@ -21,14 +21,14 @@ export const venueIntro = {
 
 export const venueMoments: VenueMoment[] = [
   {
-    src: "/venue/aerial.jpg",
+    src: "/venue/aerial.view.jpg",
     label: "Aerial view",
     caption: "The estate from above",
     placeholderTint: "#C6B48A",
     aspect: "aspect-[16/9] md:aspect-[2.2/1]",
   },
   {
-    src: "/venue/courtyard.jpg",
+    src: "/venue/courtyard-dinner.jpg",
     label: "Courtyard dinner",
     caption: "Outdoor tables",
     placeholderTint: "#CDB59A",
