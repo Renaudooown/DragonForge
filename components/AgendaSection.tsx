@@ -8,9 +8,11 @@ const choiceTints = ["#C6B48A", "#A9B6A7", "#D2C4B0", "#B7AB90"];
 function AgendaEntry({
   item,
   showChoiceSlots,
+  inverted = false,
 }: {
   item: AgendaItem;
   showChoiceSlots?: boolean;
+  inverted?: boolean;
 }) {
   const isPlayful = item.tone === "playful";
   const choices = item.tone === "choice" ? item.choices ?? [] : [];
@@ -29,7 +31,11 @@ function AgendaEntry({
       <p className="text-[0.95rem] tracking-wide text-forge sm:text-base">
         {item.time}
         {item.note ? (
-          <span className="ml-3 text-[0.7rem] uppercase tracking-[0.22em] text-muted">
+          <span
+            className={`ml-3 text-[0.7rem] uppercase tracking-[0.22em] ${
+              inverted ? "text-ivory/45" : "text-muted"
+            }`}
+          >
             {item.note}
           </span>
         ) : null}
@@ -37,7 +43,9 @@ function AgendaEntry({
       <h4
         className={
           isPlayful
-            ? "mt-1.5 font-display text-5xl leading-none text-ink italic sm:text-6xl"
+            ? `mt-1.5 font-display text-5xl leading-none italic sm:text-6xl ${
+                inverted ? "text-ivory" : "text-ink"
+              }`
             : "mt-1.5 font-display text-3xl leading-tight text-ink sm:text-4xl"
         }
       >
@@ -45,7 +53,11 @@ function AgendaEntry({
         {isPlayful ? <span className="text-forge">.</span> : null}
       </h4>
       {item.description ? (
-        <p className="mt-2.5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
+        <p
+          className={`mt-2.5 max-w-xl text-base leading-relaxed sm:text-lg ${
+            inverted ? "text-ivory/70" : "text-ink-soft"
+          }`}
+        >
           {item.description}
         </p>
       ) : null}
@@ -96,6 +108,11 @@ function AgendaEntry({
             sizes="(max-width: 768px) 100vw, 768px"
             objectPosition={item.imagePosition}
             still
+            captionClassName={
+              inverted
+                ? "mt-2 text-sm tracking-wide text-ivory/50"
+                : "mt-2 text-sm tracking-wide text-muted"
+            }
           />
         </div>
       ) : null}
@@ -105,48 +122,62 @@ function AgendaEntry({
 
 function DayChapter({ day }: { day: AgendaDay }) {
   const isHeart = day.energy === "heart";
+  const mainItems = day.items.filter((item) => item.tone !== "playful");
+  const nightItems = day.items.filter((item) => item.tone === "playful");
 
   return (
-    <div
-      id={day.id}
-      className={
-        isHeart
-          ? "border-y border-ink/10 bg-ivory-2 px-5 py-10 sm:px-10 sm:py-14 lg:px-16"
-          : "px-5 py-8 sm:px-10 sm:py-12 lg:px-16"
-      }
-    >
-      <div className="mx-auto max-w-3xl">
-        {isHeart ? (
-          <p className="text-[0.7rem] uppercase tracking-[0.32em] text-forge">
-            The heart of it
+    <>
+      <div
+        id={day.id}
+        className={
+          isHeart
+            ? "border-t border-ink/10 bg-ivory-2 px-5 py-10 sm:px-10 sm:py-14 lg:px-16"
+            : "px-5 py-8 sm:px-10 sm:py-12 lg:px-16"
+        }
+      >
+        <div className="mx-auto max-w-3xl">
+          {isHeart ? (
+            <p className="text-[0.7rem] uppercase tracking-[0.32em] text-forge">
+              The heart of it
+            </p>
+          ) : null}
+          <p
+            className={
+              isHeart
+                ? "mt-3 font-display text-6xl leading-none tracking-tight text-ink sm:text-7xl md:text-8xl"
+                : "font-display text-5xl leading-none tracking-tight text-ink sm:text-6xl"
+            }
+          >
+            {day.weekday}
+            {isHeart ? <span className="text-forge">.</span> : null}
           </p>
-        ) : null}
-        <p
-          className={
-            isHeart
-              ? "mt-3 font-display text-6xl leading-none tracking-tight text-ink sm:text-7xl md:text-8xl"
-              : "font-display text-5xl leading-none tracking-tight text-ink sm:text-6xl"
-          }
-        >
-          {day.weekday}
-          {isHeart ? <span className="text-forge">.</span> : null}
-        </p>
-        <p className="mt-2 text-lg text-muted">{day.date}</p>
-        <p className="mt-3 max-w-md text-lg leading-relaxed text-ink-soft sm:text-xl">
-          {day.feeling}
-        </p>
+          <p className="mt-2 text-lg text-muted">{day.date}</p>
+          <p className="mt-3 max-w-md text-lg leading-relaxed text-ink-soft sm:text-xl">
+            {day.feeling}
+          </p>
 
-        <div className="relative mt-6 border-t border-ink/10 md:border-t-0 md:border-l md:pl-10">
-          {day.items.map((item) => (
-            <AgendaEntry
-              key={`${day.id}-${item.time}-${item.title}`}
-              item={item}
-              showChoiceSlots={isHeart}
-            />
-          ))}
+          <div className="relative mt-6 border-t border-ink/10 md:border-t-0 md:border-l md:pl-10">
+            {mainItems.map((item) => (
+              <AgendaEntry
+                key={`${day.id}-${item.time}-${item.title}`}
+                item={item}
+                showChoiceSlots={isHeart}
+              />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+      {nightItems.map((item) => (
+        <section
+          key={`${day.id}-${item.time}-${item.title}`}
+          className="bg-navy px-5 py-10 text-ivory sm:px-10 sm:py-14 lg:px-16"
+        >
+          <div className="relative mx-auto max-w-3xl md:pl-10">
+            <AgendaEntry item={item} inverted />
+          </div>
+        </section>
+      ))}
+    </>
   );
 }
 

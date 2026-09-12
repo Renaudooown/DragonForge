@@ -12,6 +12,7 @@ type MediaSlotProps = {
   sizes?: string;
   still?: boolean;
   objectPosition?: string;
+  captionClassName?: string;
 };
 
 export function MediaSlot({
@@ -25,6 +26,7 @@ export function MediaSlot({
   sizes = "(max-width: 768px) 100vw, 50vw",
   still = false,
   objectPosition,
+  captionClassName = "mt-2 text-sm tracking-wide text-muted",
 }: MediaSlotProps) {
   const hasImage = publicAssetExists(src);
 
@@ -61,7 +63,7 @@ export function MediaSlot({
         )}
       </div>
       {caption ? (
-        <figcaption className="mt-2 text-sm tracking-wide text-muted">
+        <figcaption className={captionClassName}>
           {caption}
         </figcaption>
       ) : null}
