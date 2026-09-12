@@ -92,7 +92,7 @@ function AgendaEntry({
             label={item.imageLabel ?? item.title}
             caption={item.imageCaption}
             placeholderTint="#CDB59A"
-            aspect="aspect-[16/9] md:aspect-[2/1]"
+            aspect="aspect-[16/9]"
             sizes="(max-width: 768px) 100vw, 768px"
             objectPosition={item.imagePosition}
             still
@@ -152,7 +152,7 @@ function DayChapter({ day }: { day: AgendaDay }) {
 
 export function AgendaSection() {
   return (
-    <section id="agenda" className="scroll-mt-20 pb-6">
+    <section id="agenda" className="scroll-mt-16 pb-6">
       <div className="px-5 pt-6 pb-3 sm:px-10 lg:px-16">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-display text-5xl leading-none tracking-tight text-ink sm:text-6xl md:text-7xl">

@@ -33,7 +33,7 @@ export const venueMoments: VenueMoment[] = [
     label: "Gathering by the pool",
     caption: "The estate from above",
     placeholderTint: "#C6B48A",
-    aspect: "aspect-[16/9] md:aspect-[2.2/1]",
+    aspect: "aspect-[16/9]",
   },
   {
     src: "/venue/courtyard.jpg",

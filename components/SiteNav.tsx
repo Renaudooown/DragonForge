@@ -5,15 +5,7 @@ import { useEffect, useState } from "react";
 import { nav, site } from "@/data/site";
 
 export function SiteNav() {
-  const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>("");
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     const sections = nav
@@ -37,13 +29,7 @@ export function SiteNav() {
   }, []);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow] duration-300 ${
-        scrolled
-          ? "border-b border-ink/10 bg-ivory"
-          : "border-b border-transparent bg-transparent"
-      }`}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-ivory">
       <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-4 py-2.5 sm:px-8 lg:px-12">
         <a href="#top" className="shrink-0" aria-label={`${site.title} — back to top`}>
           <Image
@@ -59,7 +45,7 @@ export function SiteNav() {
             alt={site.name}
             width={834}
             height={322}
-            className="hidden h-8 w-auto sm:block"
+            className="hidden h-7 w-auto sm:block"
             priority
           />
         </a>

@@ -3,7 +3,7 @@ import { VenueMoment } from "@/components/VenueMoment";
 
 export function GettingThereSection() {
   return (
-    <div id="getting-there" className="scroll-mt-20">
+    <div id="getting-there" className="scroll-mt-16">
       <section className="bg-charcoal px-5 py-16 text-ivory sm:px-10 sm:py-24 lg:px-16">
         <div className="mx-auto max-w-5xl">
           <p className="text-[0.7rem] uppercase tracking-[0.32em] text-forge">

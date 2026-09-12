@@ -5,7 +5,7 @@ export function PeopleSection() {
   return (
     <section
       id="people"
-      className="scroll-mt-20 px-4 pt-2 pb-16 sm:px-8 sm:pb-20 lg:px-12"
+      className="scroll-mt-16 px-4 pt-2 pb-16 sm:px-8 sm:pb-20 lg:px-12"
     >
       <div className="mx-auto max-w-[1440px]">
         <h2 className="font-display text-5xl leading-none tracking-tight text-ink sm:text-6xl md:text-7xl">
