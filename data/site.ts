@@ -19,6 +19,9 @@ export const site = {
 
 export const nav = [
   { href: "#people", id: "people", label: "People" },
-  { href: "#getting-there", id: "getting-there", label: "Getting there" },
   { href: "#agenda", id: "agenda", label: "Agenda" },
+  { href: "#activities", id: "activities", label: "Activities" },
+  { href: "#rooms", id: "rooms", label: "Rooms" },
+  { href: "#transfers", id: "transfers", label: "Transfers" },
+  { href: "#pack", id: "pack", label: "Pack" },
 ] as const;

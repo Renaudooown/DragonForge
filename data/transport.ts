@@ -14,16 +14,26 @@ export type TransportHub = {
 };
 
 export const transport = {
-  kicker: "Getting there",
+  kicker: "Transfers",
   promise: "We’ll get you to the Domaine.",
   summary:
-    "We’re organising shared vans from the main arrival hubs based on everyone’s travel plans. Your exact pickup point, time and group will be shared with you before the retreat.",
+    "We’re organising shared vans from the main arrival hubs. Individual pickup and drop-off slots will appear on this page once they are confirmed.",
   grouping:
-    "Once everyone’s travel plans are locked, we’ll group arrivals and send you your van, meeting point and pickup time.",
+    "Vans run from the three main hubs. Your exact meeting point, time and group will be added here shortly.",
   arrival: {
     dayLabel: "Tuesday 22 September",
-    window: "15:00–19:00",
-    windowNote: "Main arrival & check-in",
+    window: "12:00–18:00",
+    windowNote: "Arrivals / pickups",
+  },
+  checkIn: {
+    dayLabel: "Tuesday 22 September",
+    window: "14:00–18:00",
+    windowNote: "Arrival, reception & room assignment",
+  },
+  departure: {
+    dayLabel: "Thursday 24 September",
+    window: "09:00–16:00",
+    windowNote: "Departures / drop-offs",
   },
   hubsIntro: "Main pickup hubs",
   hubs: [

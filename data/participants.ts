@@ -53,7 +53,6 @@ export const participants: Participant[] = [
   person("Alexandra", "Woodman", "British Business Bank", "/people/Alexandra-woodman.jpg .jpeg"),
   person("Davyd", "Gromenko", "RSJ Investments", "/people/davyd-gromenko.png"),
   person("Nadine", "Geiser", undefined, "/people/Nadine-Geiser.jpg .jpeg"),
-  person("Tobias", "Reimann-Dubbers", "BNVT Capital", "/people/Tobias-Reimann-Dubbers.jpg .jpeg"),
   person("Alexander", "Wagner", "Heliad", "/people/Alexander-Wagner.jpg .jpeg"),
   person("Edoardo", "Nicolini", "FSVG", "/people/Edoardo-nicolini.jpg .jpeg"),
   person("Rawan", "Farwana", "Wa'ed Ventures", "/people/Rawan-Farwana.jpg .jpeg"),
@@ -64,4 +63,13 @@ export const participants: Participant[] = [
   person("Harry", "Morgan", "7Percent Ventures", "/people/Harry-Morgan.jpg .jpeg"),
   person("Moritz", "Von Klot", "U2V", "/people/Moritz-Von-Klot.jpg .jpeg"),
   person("Sofia", "Queiroz", "Maze Impact", "/people/Sofia-Queiroz.jpg .jpeg"),
+  person("Luana", "David", "Supernode Global"),
 ];
+
+export function participantName(participant: Participant): string {
+  return `${participant.firstName} ${participant.lastName}`;
+}
+
+export function findParticipant(name: string): Participant | undefined {
+  return participants.find((person) => participantName(person) === name);
+}

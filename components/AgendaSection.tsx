@@ -15,12 +15,13 @@ function AgendaEntry({
   inverted?: boolean;
 }) {
   const isPlayful = item.tone === "playful";
-  const choices = item.tone === "choice" ? item.choices ?? [] : [];
+  const choices =
+    item.tone === "choice" || item.tone === "groups" ? item.choices ?? [] : [];
   const showChoiceImages =
     choices.length > 0 &&
     (Boolean(showChoiceSlots) ||
       choices.some((choice) => publicAssetExists(choice.image)));
-  const hasMomentImage = Boolean(item.image);
+  const hasMomentImage = publicAssetExists(item.image);
 
   return (
     <article className="relative py-5 md:py-6">
@@ -62,7 +63,34 @@ function AgendaEntry({
         </p>
       ) : null}
 
-      {choices.length > 0 && showChoiceImages ? (
+      {choices.length > 0 && item.tone === "groups" ? (
+        <div className="mt-5 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
+          {choices.map((choice) => (
+            <div key={choice.label} className="border-t border-ink/15 pt-4">
+              <p className="font-display text-4xl leading-none tracking-tight text-ink sm:text-5xl">
+                {choice.label}
+              </p>
+              {choice.time ? (
+                <p className="mt-3 text-base tracking-wide text-forge">{choice.time}</p>
+              ) : null}
+              {choice.meet ? (
+                <p className="mt-1 text-base text-ink-soft">{choice.meet}</p>
+              ) : null}
+              {publicAssetExists(choice.image) ? (
+                <MediaSlot
+                  src={choice.image}
+                  label={choice.label}
+                  placeholderTint="#C6B48A"
+                  aspect="aspect-[3/2]"
+                  className="mt-4"
+                />
+              ) : null}
+            </div>
+          ))}
+        </div>
+      ) : null}
+
+      {choices.length > 0 && item.tone === "choice" && showChoiceImages ? (
         <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
           {choices.map((choice, index) => (
             <div key={choice.label}>
@@ -82,7 +110,7 @@ function AgendaEntry({
         </div>
       ) : null}
 
-      {choices.length > 0 && !showChoiceImages ? (
+      {choices.length > 0 && item.tone === "choice" && !showChoiceImages ? (
         <div className="mt-5 flex flex-col items-start gap-2 sm:flex-row sm:items-baseline sm:gap-6">
           {choices.map((choice, index) => (
             <span key={choice.label} className="contents">

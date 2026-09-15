@@ -1,4 +1,4 @@
-import { participants } from "@/data/participants";
+import { participantName, participants } from "@/data/participants";
 import { ParticipantPortrait } from "@/components/ParticipantPortrait";
 
 export function PeopleSection() {
@@ -20,7 +20,7 @@ export function PeopleSection() {
       <div className="mx-auto mt-10 grid max-w-[1440px] grid-cols-2 gap-x-3 gap-y-7 sm:mt-12 md:grid-cols-3 md:gap-x-6 md:gap-y-10 lg:grid-cols-4">
         {participants.map((participant) => (
           <ParticipantPortrait
-            key={participant.image}
+            key={participantName(participant)}
             participant={participant}
           />
         ))}

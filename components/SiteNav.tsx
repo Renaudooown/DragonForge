@@ -30,7 +30,7 @@ export function SiteNav() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-ivory">
-      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-4 py-2.5 sm:px-8 lg:px-12">
+      <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-4 py-2.5 sm:px-8 lg:px-12">
         <a href="#top" className="shrink-0" aria-label={`${site.title} — back to top`}>
           <Image
             src="/brand/dragonforge-mark.png"
@@ -49,16 +49,19 @@ export function SiteNav() {
             priority
           />
         </a>
-        <nav aria-label="Sections" className="flex items-center gap-4 sm:gap-7">
+        <nav
+          aria-label="Sections"
+          className="flex min-w-0 items-center gap-3 overflow-x-auto text-[13px] tracking-wide [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-5 sm:text-[15px] [&::-webkit-scrollbar]:hidden"
+        >
           {nav.map((item) => {
             const isActive = active === item.id;
             return (
               <a
                 key={item.id}
                 href={item.href}
-                aria-current={isActive ? "location" : undefined}
+                aria-label={item.id === "pack" ? "What to pack" : undefined}
                 onClick={() => setActive(item.id)}
-                className={`text-[15px] tracking-wide transition-colors duration-200 ${
+                className={`shrink-0 whitespace-nowrap transition-colors duration-200 ${
                   isActive ? "text-forge" : "text-ink/80 hover:text-forge"
                 }`}
               >

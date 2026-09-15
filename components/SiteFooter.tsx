@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { site } from "@/data/site";
+import { SponsorLockup } from "@/components/SponsorLockup";
+import { logoutAction } from "@/app/login/actions";
 
 export function SiteFooter() {
   return (
@@ -25,6 +27,15 @@ export function SiteFooter() {
           {site.footerLine.replace(/\.$/, "")}
           <span className="text-forge">.</span>
         </p>
+        <SponsorLockup onDark className="mt-12 flex flex-col items-center" />
+        <form action={logoutAction} className="mt-8">
+          <button
+            type="submit"
+            className="text-sm tracking-wide text-ivory/45 transition-colors hover:text-ivory"
+          >
+            Log out
+          </button>
+        </form>
       </div>
     </footer>
   );

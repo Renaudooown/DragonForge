@@ -1,9 +1,63 @@
 import { transport } from "@/data/transport";
+import { transfers } from "@/data/transfers";
 import { VenueMoment } from "@/components/VenueMoment";
+
+function TransferSlots() {
+  if (transfers.slots.length === 0) {
+    return (
+      <p className="mt-8 max-w-xl font-display text-2xl leading-snug text-ink sm:text-3xl">
+        {transfers.pendingNotice}
+      </p>
+    );
+  }
+
+  const arrivals = transfers.slots.filter((slot) => slot.direction === "arrival");
+  const departures = transfers.slots.filter((slot) => slot.direction === "departure");
+
+  return (
+    <div className="mt-10 space-y-10">
+      <SlotGroup title="Arrivals" slots={arrivals} />
+      <SlotGroup title="Departures" slots={departures} />
+    </div>
+  );
+}
+
+function SlotGroup({
+  title,
+  slots,
+}: {
+  title: string;
+  slots: typeof transfers.slots;
+}) {
+  if (slots.length === 0) return null;
+
+  return (
+    <div>
+      <h4 className="font-display text-2xl text-ink sm:text-3xl">{title}</h4>
+      <ul className="mt-4 divide-y divide-ink/10 border-y border-ink/10">
+        {slots.map((slot) => (
+          <li
+            key={`${slot.direction}-${slot.participant}-${slot.hub}-${slot.meetingTime ?? ""}`}
+            className="grid gap-1 py-4 sm:grid-cols-[1.1fr_1fr_auto] sm:items-baseline sm:gap-6"
+          >
+            <span className="text-lg text-ink">{slot.participant}</span>
+            <span className="text-sm text-muted">{slot.hub}</span>
+            <span className="text-sm tracking-wide text-forge">
+              {[slot.meetingTime, slot.vanGroup].filter(Boolean).join(" · ")}
+            </span>
+            {slot.note ? (
+              <span className="text-sm text-muted sm:col-span-3">{slot.note}</span>
+            ) : null}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export function GettingThereSection() {
   return (
-    <div id="getting-there" className="scroll-mt-16">
+    <div id="transfers" className="scroll-mt-16">
       <section className="bg-navy px-5 py-16 text-ivory sm:px-10 sm:py-24 lg:px-16">
         <div className="mx-auto max-w-5xl">
           <p className="text-[0.7rem] uppercase tracking-[0.32em] text-forge">
@@ -16,16 +70,27 @@ export function GettingThereSection() {
             {transport.summary}
           </p>
 
-          <div className="mt-14 border-t border-ivory/15 pt-12 sm:mt-20">
-            <p className="text-[0.7rem] uppercase tracking-[0.28em] text-ivory/55">
-              {transport.arrival.dayLabel}
-            </p>
-            <p className="mt-3 font-display text-5xl leading-none tracking-tight text-forge sm:text-7xl md:text-8xl">
-              {transport.arrival.window}
-            </p>
-            <p className="mt-4 text-xl text-ivory sm:text-2xl">
-              {transport.arrival.windowNote}
-            </p>
+          <div className="mt-14 grid gap-10 border-t border-ivory/15 pt-12 sm:mt-16 md:grid-cols-2 md:gap-16">
+            <div>
+              <p className="text-[0.7rem] uppercase tracking-[0.28em] text-ivory/55">
+                {transfers.arrival.dayLabel}
+              </p>
+              <p className="mt-3 font-display text-5xl leading-none tracking-tight text-forge sm:text-6xl">
+                {transfers.arrival.window}
+              </p>
+              <p className="mt-4 text-xl text-ivory">{transfers.arrival.windowNote}</p>
+            </div>
+            <div>
+              <p className="text-[0.7rem] uppercase tracking-[0.28em] text-ivory/55">
+                {transfers.departure.dayLabel}
+              </p>
+              <p className="mt-3 font-display text-5xl leading-none tracking-tight text-ivory sm:text-6xl">
+                {transfers.departure.window}
+              </p>
+              <p className="mt-4 text-xl text-ivory/80">
+                {transfers.departure.windowNote}
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -66,6 +131,8 @@ export function GettingThereSection() {
               </article>
             ))}
           </div>
+
+          <TransferSlots />
         </div>
       </section>
 
