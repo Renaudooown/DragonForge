@@ -67,7 +67,7 @@ export const agenda = {
         {
           time: "19:30–20:00",
           title: "Welcome to DragonForge",
-          description: "Introduction, and a welcome from PLMJ.",
+          description: "Introduction and welcome from the DF team.",
         },
         {
           time: "20:00–20:30",
@@ -100,13 +100,13 @@ export const agenda = {
             {
               label: "Canoeing",
               time: "09:30–14:00",
-              meet: "Meets 09:30 at the Domaine entrance",
+              meet: "Meet at the Domaine entrance",
               image: "/activities/canoeing.jpg",
             },
             {
               label: "Hiking",
               time: "10:00–14:00",
-              meet: "Meets 10:00 at the Domaine entrance",
+              meet: "Meet at the Domaine entrance",
               image: "/activities/hiking.jpg",
             },
           ],
@@ -119,7 +119,7 @@ export const agenda = {
         {
           time: "14:30–17:30",
           title: "Back at the Domaine",
-          description: "Pool, downtime and time to yourself.",
+          description: "Pool, downtime and time to yourself — then prep for dinner.",
           image: "/venue/pool.jpg",
           imageLabel: "Pool time",
           imageCaption: "Back at the Domaine",

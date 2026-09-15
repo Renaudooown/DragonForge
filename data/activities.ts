@@ -20,7 +20,7 @@ export const activities = {
       id: "canoeing",
       name: "Canoeing",
       meetTime: "09:30 Wednesday",
-      meetPlace: "Domaine entrance",
+      meetPlace: "Meet at the Domaine entrance",
       participants: [
         "Omar Hedeya",
         "Safak Tufekci",
@@ -43,7 +43,7 @@ export const activities = {
       id: "hiking",
       name: "Hiking",
       meetTime: "10:00 Wednesday",
-      meetPlace: "Domaine entrance",
+      meetPlace: "Meet at the Domaine entrance",
       participants: [
         "Tilly Fleming",
         "Haralds Abolins",
