@@ -7,6 +7,7 @@ import { PackingSection } from "@/components/PackingSection";
 import { PeopleSection } from "@/components/PeopleSection";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteNav } from "@/components/SiteNav";
+import { WifiSection } from "@/components/WifiSection";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <ActivitiesSection />
         <GettingThereSection />
         <PackingSection />
+        <WifiSection />
       </main>
       <SiteFooter />
     </>
