@@ -180,9 +180,11 @@ function DayChapter({ day }: { day: AgendaDay }) {
             {isHeart ? <span className="text-forge">.</span> : null}
           </p>
           <p className="mt-2 text-lg text-muted">{day.date}</p>
-          <p className="mt-3 max-w-md text-lg leading-relaxed text-ink-soft sm:text-xl">
-            {day.feeling}
-          </p>
+          {day.feeling ? (
+            <p className="mt-3 max-w-md text-lg leading-relaxed text-ink-soft sm:text-xl">
+              {day.feeling}
+            </p>
+          ) : null}
 
           <div className="relative mt-6 border-t border-ink/10 md:border-t-0 md:border-l md:pl-10">
             {mainItems.map((item) => (
@@ -218,9 +220,6 @@ export function AgendaSection() {
             {agenda.title}
             <span className="text-forge">.</span>
           </h2>
-          <p className="mt-4 max-w-xl text-lg text-ink-soft sm:text-xl">
-            {agenda.subtitle}
-          </p>
         </div>
       </div>
 

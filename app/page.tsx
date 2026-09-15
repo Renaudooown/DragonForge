@@ -5,7 +5,6 @@ import { GettingThereSection } from "@/components/GettingThereSection";
 import { Hero } from "@/components/Hero";
 import { PackingSection } from "@/components/PackingSection";
 import { PeopleSection } from "@/components/PeopleSection";
-import { RoomsSection } from "@/components/RoomsSection";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteNav } from "@/components/SiteNav";
 
@@ -19,7 +18,6 @@ export default function Home() {
         <PeopleSection />
         <AgendaSection />
         <ActivitiesSection />
-        <RoomsSection />
         <GettingThereSection />
         <PackingSection />
       </main>

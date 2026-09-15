@@ -30,14 +30,12 @@ export type AgendaDay = {
   weekday: string;
   date: string;
   energy: "arrival" | "heart" | "departure";
-  feeling: string;
+  feeling?: string;
   items: AgendaItem[];
 };
 
 export const agenda = {
   title: "The plan",
-  subtitle:
-    "Enough structure to know where to be. Enough space to make the rest happen.",
   days: [
     {
       id: "tuesday",
@@ -85,7 +83,6 @@ export const agenda = {
       weekday: "Wednesday",
       date: "23 September",
       energy: "heart",
-      feeling: "The heart of the retreat — outside, then back together.",
       items: [
         {
           time: "07:30–09:30",
@@ -153,7 +150,6 @@ export const agenda = {
       weekday: "Thursday",
       date: "24 September",
       energy: "departure",
-      feeling: "A slow morning, then people leave in their own time.",
       items: [
         {
           time: "08:30–09:30",
