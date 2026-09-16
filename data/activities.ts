@@ -58,6 +58,7 @@ export const activities = {
         "Luana David",
         "Francesco Moiraghi",
         "Nina Litman-Roventa",
+        "David Guerin",
       ],
     },
   ] satisfies ActivityGroup[],

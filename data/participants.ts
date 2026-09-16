@@ -64,6 +64,7 @@ export const participants: Participant[] = [
   person("Moritz", "Von Klot", "U2V", "/people/Moritz-Von-Klot.jpg .jpeg"),
   person("Sofia", "Queiroz", "Maze Impact", "/people/Sofia-Queiroz.jpg .jpeg"),
   person("Luana", "David", "Supernode Global", "/people/luana-david.jpg"),
+  person("David", "Guerin", "Brighteye Ventures", "/people/david-guerin.jpg"),
 ];
 
 export function participantName(participant: Participant): string {
