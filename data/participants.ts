@@ -35,7 +35,7 @@ export const participants: Participant[] = [
   person("Inês", "Macedo Santos", "Armilar", "/people/ines-macedo-santos.jpg"),
   person("Omar", "Hedeya", "Project A", "/people/omar-hedeya.jpg"),
   person("Safak", "Tufekci", "ScaleX Ventures", "/people/safak-tufekci.jpg"),
-  person("Xavier", "de Villepin", "NewSchool VC"),
+  person("Xavier", "de Villepin", "NewSchool VC", "/people/xavier-de-villepin.jpg"),
   person("Francesco", "Moiraghi", "Unruly Capital", "/people/Francesco-moiraghi.jpg"),
   person("Jean", "Hastings", "Supernova", "/people/jean-hastings.jpg"),
   person("Andreas", "Fischer", "First Momentum", "/people/Andreas-fischer.jpg .jpeg"),
