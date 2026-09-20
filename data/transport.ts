@@ -17,9 +17,9 @@ export const transport = {
   kicker: "Transfers",
   promise: "We’ll get you to the Domaine.",
   summary:
-    "We’re organising shared vans from the main arrival hubs. Individual pickup and drop-off slots will appear on this page once they are confirmed.",
+    "Shared vans from the main hubs. Find your name below for your pickup time.",
   grouping:
-    "Vans run from the three main hubs. Your exact meeting point, time and group will be added here shortly.",
+    "Vans run from the three main hubs. Your pickup time is the time to meet the van — not your flight or train time.",
   arrival: {
     dayLabel: "Tuesday 22 September",
     window: "12:00–18:00",

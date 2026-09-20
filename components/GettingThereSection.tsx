@@ -1,59 +1,7 @@
 import { transport } from "@/data/transport";
 import { transfers } from "@/data/transfers";
+import { TransfersSchedule } from "@/components/TransfersSchedule";
 import { VenueMoment } from "@/components/VenueMoment";
-
-function TransferSlots() {
-  if (transfers.slots.length === 0) {
-    return (
-      <p className="mt-8 max-w-xl font-display text-2xl leading-snug text-ink sm:text-3xl">
-        {transfers.pendingNotice}
-      </p>
-    );
-  }
-
-  const arrivals = transfers.slots.filter((slot) => slot.direction === "arrival");
-  const departures = transfers.slots.filter((slot) => slot.direction === "departure");
-
-  return (
-    <div className="mt-10 space-y-10">
-      <SlotGroup title="Arrivals" slots={arrivals} />
-      <SlotGroup title="Departures" slots={departures} />
-    </div>
-  );
-}
-
-function SlotGroup({
-  title,
-  slots,
-}: {
-  title: string;
-  slots: typeof transfers.slots;
-}) {
-  if (slots.length === 0) return null;
-
-  return (
-    <div>
-      <h4 className="font-display text-2xl text-ink sm:text-3xl">{title}</h4>
-      <ul className="mt-4 divide-y divide-ink/10 border-y border-ink/10">
-        {slots.map((slot) => (
-          <li
-            key={`${slot.direction}-${slot.participant}-${slot.hub}-${slot.meetingTime ?? ""}`}
-            className="grid gap-1 py-4 sm:grid-cols-[1.1fr_1fr_auto] sm:items-baseline sm:gap-6"
-          >
-            <span className="text-lg text-ink">{slot.participant}</span>
-            <span className="text-sm text-muted">{slot.hub}</span>
-            <span className="text-sm tracking-wide text-forge">
-              {[slot.meetingTime, slot.vanGroup].filter(Boolean).join(" · ")}
-            </span>
-            {slot.note ? (
-              <span className="text-sm text-muted sm:col-span-3">{slot.note}</span>
-            ) : null}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
 
 export function GettingThereSection() {
   return (
@@ -95,6 +43,8 @@ export function GettingThereSection() {
         </div>
       </section>
 
+      <TransfersSchedule />
+
       <section className="px-5 py-12 sm:px-10 sm:py-16 lg:px-16">
         <div className="mx-auto max-w-6xl">
           <h3 className="font-display text-3xl tracking-tight text-ink sm:text-4xl">
@@ -131,8 +81,6 @@ export function GettingThereSection() {
               </article>
             ))}
           </div>
-
-          <TransferSlots />
         </div>
       </section>
 
