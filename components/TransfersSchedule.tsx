@@ -36,6 +36,18 @@ function PickupDay({
                 {block.groupLabel}
               </p>
             ) : null}
+            {block.location ? (
+              <p className="mt-2 max-w-md">
+                {block.locationLabel ? (
+                  <span className="mb-1 block text-[0.7rem] uppercase tracking-[0.22em] text-muted">
+                    {block.locationLabel}
+                  </span>
+                ) : null}
+                <span className="font-display text-xl leading-snug text-ink sm:text-2xl">
+                  {block.location}
+                </span>
+              </p>
+            ) : null}
             <ul className="mt-3 space-y-1.5">
               {block.names.map((name) => (
                 <li

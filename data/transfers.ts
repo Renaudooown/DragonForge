@@ -1,7 +1,7 @@
 /**
- * Final van pickup times.
+ * Final van pickup times and places.
  *
- * Pickup times only — no flights, trains, phones, or travel comments.
+ * No flights, trains, phones, or travel comments.
  * Do not merge distinct 10:30 departure groups.
  */
 export type TransferDirection = "arrival" | "departure";
@@ -10,6 +10,8 @@ export type TransferSlot = {
   name: string;
   pickupTime: string;
   direction: TransferDirection;
+  location?: string;
+  locationLabel?: "Destination" | "Drop-off";
   group?: string;
 };
 
@@ -17,6 +19,8 @@ export type PickupBlock = {
   pickupTime: string;
   group?: string;
   groupLabel?: string;
+  location?: string;
+  locationLabel?: "Destination" | "Drop-off";
   names: string[];
 };
 
@@ -34,6 +38,10 @@ const GROUP_ORDER = [
   "avignon-francesca",
 ];
 
+const MRS_AIRPORT = "Marseille Provence Airport";
+const ST_CHARLES = "Marseille Saint-Charles station";
+const AVIGNON_TGV = "Avignon TGV";
+
 function minutes(time: string): number {
   const [hours, mins] = time.split(":").map(Number);
   return hours * 60 + mins;
@@ -43,14 +51,19 @@ function slot(
   name: string,
   pickupTime: string,
   direction: TransferDirection,
-  group?: string,
+  extra?: {
+    location?: string;
+    locationLabel?: "Destination" | "Drop-off";
+    group?: string;
+  },
 ): TransferSlot {
-  return { name, pickupTime, direction, group };
+  return { name, pickupTime, direction, ...extra };
 }
 
 export const transfers = {
   title: "Transfers",
-  intro: "These are van pickup times — not your flight or train times. Find your name.",
+  intro:
+    "Find your name for where to be, and when. These are van pickup times and places — not your flight or train times.",
   arrival: {
     title: "Arrivals",
     dayLabel: "Tuesday 22 September",
@@ -69,75 +82,154 @@ export const transfers = {
     note: "Joining is optional — let us know if you’d like to come.",
   },
   slots: [
-    slot("Troy Horrell", "12:30", "arrival"),
-    slot("Kajsa Hammar", "12:30", "arrival"),
-    slot("Tilly Fleming", "12:30", "arrival"),
-    slot("Jai Taylor", "12:30", "arrival"),
-    slot("Luana David", "12:30", "arrival"),
+    slot("Troy Horrell", "12:30", "arrival", { location: MRS_AIRPORT }),
+    slot("Kajsa Hammar", "12:30", "arrival", { location: MRS_AIRPORT }),
+    slot("Tilly Fleming", "12:30", "arrival", { location: MRS_AIRPORT }),
+    slot("Jai Taylor", "12:30", "arrival", { location: MRS_AIRPORT }),
+    slot("Luana David", "12:30", "arrival", { location: MRS_AIRPORT }),
 
-    slot("Edoardo Nicolini", "13:30", "arrival"),
-    slot("Omar Hedeya", "13:30", "arrival"),
-    slot("Quentin Calleja", "13:30", "arrival"),
-    slot("Nadine Geiser", "13:30", "arrival"),
-    slot("Alexander Wagner", "13:30", "arrival"),
-    slot("Robin Neff", "13:30", "arrival"),
+    slot("Edoardo Nicolini", "13:30", "arrival", { location: MRS_AIRPORT }),
+    slot("Omar Hedeya", "13:30", "arrival", { location: MRS_AIRPORT }),
+    slot("Quentin Calleja", "13:30", "arrival", { location: MRS_AIRPORT }),
+    slot("Nadine Geiser", "13:30", "arrival", { location: MRS_AIRPORT }),
+    slot("Alexander Wagner", "13:30", "arrival", { location: MRS_AIRPORT }),
+    slot("Robin Neff", "13:30", "arrival", { location: MRS_AIRPORT }),
 
-    slot("Abel Samot", "14:20", "arrival"),
+    slot("Abel Samot", "14:20", "arrival", { location: AVIGNON_TGV }),
 
-    slot("Nina Litman-Roventa", "15:00", "arrival"),
-    slot("Sabrina Senzel", "15:00", "arrival"),
-    slot("Haralds Abolins", "15:00", "arrival"),
-    slot("Safak Tufekci", "15:00", "arrival"),
+    slot("Nina Litman-Roventa", "15:00", "arrival", { location: MRS_AIRPORT }),
+    slot("Sabrina Senzel", "15:00", "arrival", { location: MRS_AIRPORT }),
+    slot("Haralds Abolins", "15:00", "arrival", { location: MRS_AIRPORT }),
+    slot("Safak Tufekci", "15:00", "arrival", { location: MRS_AIRPORT }),
 
-    slot("Jean Hastings", "15:30", "arrival"),
+    slot("Jean Hastings", "15:30", "arrival", { location: ST_CHARLES }),
 
-    slot("Alexandra Woodman", "15:45", "arrival"),
-    slot("Rawan Farwana", "15:45", "arrival"),
-    slot("Pierre Tramon", "15:45", "arrival"),
-    slot("Xavier de Villepin", "15:45", "arrival"),
+    slot("Alexandra Woodman", "15:45", "arrival", { location: AVIGNON_TGV }),
+    slot("Rawan Farwana", "15:45", "arrival", { location: AVIGNON_TGV }),
+    slot("Pierre Tramon", "15:45", "arrival", { location: AVIGNON_TGV }),
+    slot("Xavier de Villepin", "15:45", "arrival", { location: AVIGNON_TGV }),
 
-    slot("Inês Macedo Santos", "17:30", "arrival"),
-    slot("Francesco Moiraghi", "17:30", "arrival"),
-    slot("Ana Nunes Teixeira", "17:30", "arrival"),
-    slot("Francesca Baillieu", "17:30", "arrival"),
-    slot("Andreas Fischer", "17:30", "arrival"),
+    slot("Inês Macedo Santos", "17:30", "arrival", { location: MRS_AIRPORT }),
+    slot("Francesco Moiraghi", "17:30", "arrival", { location: MRS_AIRPORT }),
+    slot("Ana Nunes Teixeira", "17:30", "arrival", { location: MRS_AIRPORT }),
+    slot("Francesca Baillieu", "17:30", "arrival", { location: MRS_AIRPORT }),
+    slot("Andreas Fischer", "17:30", "arrival", { location: MRS_AIRPORT }),
 
-    slot("Paul Viehauser", "18:00", "arrival"),
-    slot("Davyd Gromenko", "18:00", "arrival"),
+    slot("Paul Viehauser", "18:00", "arrival", { location: ST_CHARLES }),
+    slot("Davyd Gromenko", "18:00", "arrival", { location: ST_CHARLES }),
 
-    slot("Davyd Gromenko", "08:30", "departure"),
+    slot("Davyd Gromenko", "08:30", "departure", {
+      location: "Château La Coste",
+      locationLabel: "Drop-off",
+    }),
 
-    slot("Quentin Calleja", "09:30", "departure"),
-    slot("Nina Litman-Roventa", "09:30", "departure"),
-    slot("Edoardo Nicolini", "09:30", "departure"),
-    slot("Safak Tufekci", "09:30", "departure"),
-    slot("Omar Hedeya", "09:30", "departure"),
-    slot("Andreas Fischer", "09:30", "departure"),
-    slot("Sabrina Senzel", "09:30", "departure"),
+    slot("Quentin Calleja", "09:30", "departure", {
+      group: "marseille",
+      location: "Marseille Airport / Marseille Saint-Charles depending on the attendee",
+      locationLabel: "Destination",
+    }),
+    slot("Nina Litman-Roventa", "09:30", "departure", {
+      group: "marseille",
+      location: "Marseille Airport / Marseille Saint-Charles depending on the attendee",
+      locationLabel: "Destination",
+    }),
+    slot("Edoardo Nicolini", "09:30", "departure", {
+      group: "marseille",
+      location: "Marseille Airport / Marseille Saint-Charles depending on the attendee",
+      locationLabel: "Destination",
+    }),
+    slot("Safak Tufekci", "09:30", "departure", {
+      group: "marseille",
+      location: "Marseille Airport / Marseille Saint-Charles depending on the attendee",
+      locationLabel: "Destination",
+    }),
+    slot("Omar Hedeya", "09:30", "departure", {
+      group: "marseille",
+      location: "Marseille Airport / Marseille Saint-Charles depending on the attendee",
+      locationLabel: "Destination",
+    }),
+    slot("Andreas Fischer", "09:30", "departure", {
+      group: "marseille",
+      location: "Marseille Airport / Marseille Saint-Charles depending on the attendee",
+      locationLabel: "Destination",
+    }),
+    slot("Sabrina Senzel", "09:30", "departure", {
+      group: "marseille",
+      location: "Marseille Airport / Marseille Saint-Charles depending on the attendee",
+      locationLabel: "Destination",
+    }),
 
-    slot("Xavier de Villepin", "10:30", "departure", "avignon"),
-    slot("Abel Samot", "10:30", "departure", "avignon"),
-    slot("Rawan Farwana", "10:30", "departure", "avignon"),
-    slot("Pierre Tramon", "10:30", "departure", "avignon"),
+    slot("Xavier de Villepin", "10:30", "departure", {
+      group: "avignon",
+      location: AVIGNON_TGV,
+      locationLabel: "Destination",
+    }),
+    slot("Abel Samot", "10:30", "departure", {
+      group: "avignon",
+      location: AVIGNON_TGV,
+      locationLabel: "Destination",
+    }),
+    slot("Rawan Farwana", "10:30", "departure", {
+      group: "avignon",
+      location: AVIGNON_TGV,
+      locationLabel: "Destination",
+    }),
+    slot("Pierre Tramon", "10:30", "departure", {
+      group: "avignon",
+      location: AVIGNON_TGV,
+      locationLabel: "Destination",
+    }),
 
-    slot("Paul Viehauser", "10:30", "departure", "marseille"),
-    slot("Nadine Geiser", "10:30", "departure", "marseille"),
-    slot("Alexander Wagner", "10:30", "departure", "marseille"),
-    slot("Robin Neff", "10:30", "departure", "marseille"),
-    slot("Kajsa Hammar", "10:30", "departure", "marseille"),
-    slot("Tilly Fleming", "10:30", "departure", "marseille"),
-    slot("Troy Horrell", "10:30", "departure", "marseille"),
+    slot("Paul Viehauser", "10:30", "departure", {
+      group: "marseille",
+      location: "Marseille Airport",
+      locationLabel: "Destination",
+    }),
+    slot("Nadine Geiser", "10:30", "departure", {
+      group: "marseille",
+      location: "Marseille Airport",
+      locationLabel: "Destination",
+    }),
+    slot("Alexander Wagner", "10:30", "departure", {
+      group: "marseille",
+      location: "Marseille Airport",
+      locationLabel: "Destination",
+    }),
+    slot("Robin Neff", "10:30", "departure", {
+      group: "marseille",
+      location: "Marseille Airport",
+      locationLabel: "Destination",
+    }),
+    slot("Kajsa Hammar", "10:30", "departure", {
+      group: "marseille",
+      location: "Marseille Airport",
+      locationLabel: "Destination",
+    }),
+    slot("Tilly Fleming", "10:30", "departure", {
+      group: "marseille",
+      location: "Marseille Airport",
+      locationLabel: "Destination",
+    }),
+    slot("Troy Horrell", "10:30", "departure", {
+      group: "marseille",
+      location: "Marseille Airport",
+      locationLabel: "Destination",
+    }),
 
-    slot("Alexandra Woodman", "10:30", "departure", "late-marseille"),
-    slot("Luana David", "10:30", "departure", "late-marseille"),
-    slot("Jean Hastings", "10:30", "departure", "late-marseille"),
-    slot("Inês Macedo Santos", "10:30", "departure", "late-marseille"),
-    slot("Ana Nunes Teixeira", "10:30", "departure", "late-marseille"),
-    slot("Haralds Abolins", "10:30", "departure", "late-marseille"),
-    slot("Sofia Queiroz", "10:30", "departure", "late-marseille"),
-    slot("Jai Taylor", "10:30", "departure", "late-marseille"),
+    slot("Alexandra Woodman", "10:30", "departure", { group: "late-marseille" }),
+    slot("Luana David", "10:30", "departure", { group: "late-marseille" }),
+    slot("Jean Hastings", "10:30", "departure", { group: "late-marseille" }),
+    slot("Inês Macedo Santos", "10:30", "departure", { group: "late-marseille" }),
+    slot("Ana Nunes Teixeira", "10:30", "departure", { group: "late-marseille" }),
+    slot("Haralds Abolins", "10:30", "departure", { group: "late-marseille" }),
+    slot("Sofia Queiroz", "10:30", "departure", { group: "late-marseille" }),
+    slot("Jai Taylor", "10:30", "departure", { group: "late-marseille" }),
 
-    slot("Francesca Baillieu", "10:30", "departure", "avignon-francesca"),
+    slot("Francesca Baillieu", "10:30", "departure", {
+      group: "avignon-francesca",
+      location: AVIGNON_TGV,
+      locationLabel: "Destination",
+    }),
   ] satisfies TransferSlot[],
 };
 
@@ -167,6 +259,8 @@ export function groupedPickups(direction: TransferDirection): PickupBlock[] {
         pickupTime: item.pickupTime,
         group: item.group,
         groupLabel: item.group ? GROUP_LABELS[item.group] : undefined,
+        location: item.location,
+        locationLabel: item.locationLabel,
         names: [item.name],
       });
     }
