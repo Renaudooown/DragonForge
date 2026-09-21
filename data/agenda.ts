@@ -152,8 +152,8 @@ export const agenda = {
       energy: "departure",
       items: [
         {
-          time: "08:30–09:30",
-          title: "Optional morning movement",
+          time: "07:30–08:30",
+          title: "Morning yoga",
           note: "Optional",
           tone: "choice",
           choices: [
@@ -162,19 +162,8 @@ export const agenda = {
           ],
         },
         {
-          time: "09:00–11:00",
-          title: "Brunch",
-        },
-        {
-          time: "09:00–16:00",
-          title: "Participant departures / transfers",
-          description:
-            "Individual drop-off slots will appear under Transfers once they are confirmed.",
-        },
-        {
-          time: "11:00–16:00",
-          title: "Pool & chill before departure",
-          note: "Optional",
+          time: "08:00–10:00",
+          title: "Breakfast",
         },
       ],
     },
