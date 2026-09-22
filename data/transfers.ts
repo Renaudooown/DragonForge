@@ -6,15 +6,21 @@
  */
 export type TransferDirection = "arrival" | "departure";
 
-export type ArrivalGroup = {
-  pickupTime: string;
-  pickupLocation: string;
-  driverName?: string;
-  driverPhone?: string;
-  mapUrl?: string;
+export type ArrivalStop = {
+  time: string;
+  location: string;
   pickupPoint?: string;
+  mapUrl?: string;
   meetingNote?: string;
   participants: string[];
+};
+
+export type ArrivalGroup = {
+  id: string;
+  title?: string;
+  driverName: string;
+  driverPhone: string;
+  stops: ArrivalStop[];
 };
 
 export type TransferSlot = {
@@ -112,6 +118,7 @@ export const transfers = {
     pickupPointLabel: "Pickup point",
     mapsLabel: "Open in Google Maps ↗",
     driverLabel: "Driver",
+    nextStopLabel: "Next stop",
   },
   departure: {
     title: "Departures",
@@ -126,97 +133,128 @@ export const transfers = {
   },
   arrivalGroups: [
     arrivalGroup({
-      pickupTime: "12:30",
-      pickupLocation: MRS_AIRPORT,
-      pickupPoint: "Maison Yellow — Terminal 1",
-      mapUrl: MAISON_YELLOW_MAP,
+      id: "isabelle",
       driverName: "Isabelle",
       driverPhone: "06 80 01 35 62",
-      participants: [
-        "Troy Horrell",
-        "Kajsa Hammar",
-        "Tilly Fleming",
-        "Jai Taylor",
-        "Luana David",
+      stops: [
+        {
+          time: "12:30",
+          location: MRS_AIRPORT,
+          pickupPoint: "Maison Yellow — Terminal 1",
+          mapUrl: MAISON_YELLOW_MAP,
+          participants: [
+            "Troy Horrell",
+            "Kajsa Hammar",
+            "Tilly Fleming",
+            "Jai Taylor",
+            "Luana David",
+          ],
+        },
       ],
     }),
     arrivalGroup({
-      pickupTime: "13:30",
-      pickupLocation: MRS_AIRPORT,
-      pickupPoint: "Maison Yellow — Terminal 1",
-      mapUrl: MAISON_YELLOW_MAP,
+      id: "sophie-early",
       driverName: "Sophie",
       driverPhone: "06 45 27 08 94",
-      participants: [
-        "Edoardo Nicolini",
-        "Omar Hedeya",
-        "Quentin Calleja",
-        "Nadine Geiser",
-        "Alexander Wagner",
-        "Robin Neff",
+      stops: [
+        {
+          time: "13:30",
+          location: MRS_AIRPORT,
+          pickupPoint: "Maison Yellow — Terminal 1",
+          mapUrl: MAISON_YELLOW_MAP,
+          participants: [
+            "Edoardo Nicolini",
+            "Omar Hedeya",
+            "Quentin Calleja",
+            "Nadine Geiser",
+            "Alexander Wagner",
+            "Robin Neff",
+          ],
+        },
       ],
     }),
     arrivalGroup({
-      pickupTime: "14:20",
-      pickupLocation: AVIGNON_TGV,
+      id: "moritz",
       driverName: "Moritz",
       driverPhone: "+49 1575 5585688",
-      participants: ["Abel Samot"],
+      stops: [
+        {
+          time: "14:20",
+          location: AVIGNON_TGV,
+          participants: ["Abel Samot"],
+        },
+      ],
     }),
     arrivalGroup({
-      pickupTime: "15:00",
-      pickupLocation: MRS_AIRPORT,
-      pickupPoint: "Maison Yellow — Terminal 1",
-      mapUrl: MAISON_YELLOW_MAP,
+      id: "youssef",
+      title: "Youssef’s group",
       driverName: "Youssef",
       driverPhone: "06 01 22 52 96",
-      participants: [
-        "Nina Litman-Roventa",
-        "Sabrina Senzel",
-        "Haralds Abolins",
-        "Safak Tufekci",
+      stops: [
+        {
+          time: "15:00",
+          location: MRS_AIRPORT,
+          pickupPoint: "Maison Yellow — Terminal 1",
+          mapUrl: MAISON_YELLOW_MAP,
+          participants: [
+            "Nina Litman-Roventa",
+            "Sabrina Senzel",
+            "Haralds Abolins",
+            "Safak Tufekci",
+          ],
+        },
+        {
+          time: "15:30",
+          location: ST_CHARLES,
+          meetingNote: ST_CHARLES_NOTE,
+          participants: ["Jean Hastings"],
+        },
       ],
     }),
     arrivalGroup({
-      pickupTime: "15:30",
-      pickupLocation: ST_CHARLES,
-      meetingNote: ST_CHARLES_NOTE,
-      participants: ["Jean Hastings"],
-    }),
-    arrivalGroup({
-      pickupTime: "15:45",
-      pickupLocation: AVIGNON_CENTRE,
+      id: "harry",
+      title: "Harry’s group",
       driverName: "Harry",
       driverPhone: "+44 7788 561435",
-      participants: ["Rawan Farwana", "Pierre Tramon", "Alexandra Woodman"],
+      stops: [
+        {
+          time: "15:00",
+          location: AVIGNON_CENTRE,
+          participants: ["Rawan Farwana", "Pierre Tramon", "Alexandra Woodman"],
+        },
+        {
+          time: "15:30",
+          location: AVIGNON_TGV,
+          participants: ["Xavier de Villepin"],
+        },
+      ],
     }),
     arrivalGroup({
-      pickupTime: "15:45",
-      pickupLocation: AVIGNON_TGV,
-      driverName: "Harry",
-      driverPhone: "+44 7788 561435",
-      participants: ["Xavier de Villepin"],
-    }),
-    arrivalGroup({
-      pickupTime: "17:30",
-      pickupLocation: MRS_AIRPORT,
-      pickupPoint: "Maison Yellow — Terminal 1",
-      mapUrl: MAISON_YELLOW_MAP,
+      id: "sophie-late",
+      title: "Sophie’s group",
       driverName: "Sophie",
       driverPhone: "06 45 27 08 94",
-      participants: [
-        "Inês Macedo Santos",
-        "Francesco Moiraghi",
-        "Ana Nunes Teixeira",
-        "Francesca Baillieu",
-        "Andreas Fischer",
+      stops: [
+        {
+          time: "17:30",
+          location: MRS_AIRPORT,
+          pickupPoint: "Maison Yellow — Terminal 1",
+          mapUrl: MAISON_YELLOW_MAP,
+          participants: [
+            "Inês Macedo Santos",
+            "Francesco Moiraghi",
+            "Ana Nunes Teixeira",
+            "Francesca Baillieu",
+            "Andreas Fischer",
+          ],
+        },
+        {
+          time: "18:00",
+          location: ST_CHARLES,
+          meetingNote: ST_CHARLES_NOTE,
+          participants: ["Paul Viehauser", "Davyd Gromenko"],
+        },
       ],
-    }),
-    arrivalGroup({
-      pickupTime: "18:00",
-      pickupLocation: ST_CHARLES,
-      meetingNote: ST_CHARLES_NOTE,
-      participants: ["Paul Viehauser", "Davyd Gromenko"],
     }),
   ] satisfies ArrivalGroup[],
   slots: [
@@ -337,19 +375,23 @@ export const transfers = {
 
 export function groupedPickups(direction: TransferDirection): PickupBlock[] {
   if (direction === "arrival") {
-    return transfers.arrivalGroups.map((group) => ({
-      pickupTime: group.pickupTime,
-      location: group.pickupLocation,
-      names: group.participants,
-      driverName: group.driverName,
-      driverPhone: group.driverPhone,
-      mapUrl: group.mapUrl,
-      pickupPoint: group.pickupPoint,
-      pickupPointLabel: group.pickupPoint
-        ? transfers.arrival.pickupPointLabel
-        : undefined,
-      meetingNote: group.meetingNote,
-    }));
+    return transfers.arrivalGroups.flatMap((group) =>
+      group.stops.map((stop) => ({
+        pickupTime: stop.time,
+        group: group.id,
+        groupLabel: group.title,
+        location: stop.location,
+        names: stop.participants,
+        driverName: group.driverName,
+        driverPhone: group.driverPhone,
+        mapUrl: stop.mapUrl,
+        pickupPoint: stop.pickupPoint,
+        pickupPointLabel: stop.pickupPoint
+          ? transfers.arrival.pickupPointLabel
+          : undefined,
+        meetingNote: stop.meetingNote,
+      })),
+    );
   }
 
   const slots = transfers.slots.filter((item) => item.direction === direction);

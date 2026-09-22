@@ -1,3 +1,4 @@
+import type { ArrivalGroup, ArrivalStop } from "@/data/transfers";
 import { groupedPickups, telHref, transfers } from "@/data/transfers";
 
 function DriverContact({ name, phone }: { name?: string; phone?: string }) {
@@ -24,9 +25,100 @@ function DriverContact({ name, phone }: { name?: string; phone?: string }) {
   );
 }
 
-function ArrivalGroups() {
-  const blocks = groupedPickups("arrival");
+function ArrivalStopBody({ stop }: { stop: ArrivalStop }) {
+  return (
+    <>
+      <p className="text-[1.05rem] tracking-wide text-forge sm:text-lg">{stop.time}</p>
+      <p className="mt-2 font-display text-xl leading-snug text-ink sm:text-2xl">
+        {stop.location}
+      </p>
+      {stop.pickupPoint ? (
+        <p className="mt-4">
+          <span className="block text-[0.7rem] uppercase tracking-[0.22em] text-muted">
+            {transfers.arrival.pickupPointLabel}
+          </span>
+          <span className="mt-1.5 block font-display text-xl leading-snug text-ink sm:text-2xl">
+            {stop.pickupPoint}
+          </span>
+        </p>
+      ) : null}
+      {stop.mapUrl ? (
+        <a
+          href={stop.mapUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-3 inline-block text-sm tracking-wide text-forge underline decoration-forge/30 underline-offset-4 transition-colors hover:decoration-forge"
+        >
+          {transfers.arrival.mapsLabel}
+        </a>
+      ) : null}
+      {stop.meetingNote ? (
+        <p className="mt-4 max-w-md text-base leading-relaxed text-ink-soft">
+          {stop.meetingNote}
+        </p>
+      ) : null}
+      <ul className="mt-5 space-y-1.5">
+        {stop.participants.map((name) => (
+          <li
+            key={name}
+            className="font-display text-2xl leading-snug text-ink sm:text-[1.85rem]"
+          >
+            {name}
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
 
+function SingleStopArrival({ group }: { group: ArrivalGroup }) {
+  const stop = group.stops[0];
+
+  return (
+    <div className="border-t border-ink/10 pt-5">
+      <ArrivalStopBody stop={stop} />
+      <DriverContact name={group.driverName} phone={group.driverPhone} />
+    </div>
+  );
+}
+
+function MultiStopArrival({ group }: { group: ArrivalGroup }) {
+  return (
+    <div className="border-t border-ink/10 pt-5">
+      <p className="font-display text-3xl leading-none tracking-tight text-ink sm:text-4xl">
+        {group.title}
+      </p>
+      <DriverContact name={group.driverName} phone={group.driverPhone} />
+      <ol className="mt-8">
+        {group.stops.map((stop, index) => {
+          const hasNext = index < group.stops.length - 1;
+          return (
+            <li key={`${group.id}-${stop.time}-${stop.location}`} className="relative pl-7">
+              {hasNext ? (
+                <span
+                  aria-hidden="true"
+                  className="absolute top-2 bottom-0 left-[0.2rem] w-px bg-ink/15"
+                />
+              ) : null}
+              <span
+                aria-hidden="true"
+                className="absolute top-2 left-0 h-2 w-2 rounded-full bg-forge"
+              />
+              <ArrivalStopBody stop={stop} />
+              {hasNext ? (
+                <p className="py-6 text-[0.7rem] uppercase tracking-[0.28em] text-muted">
+                  {transfers.arrival.nextStopLabel}
+                </p>
+              ) : null}
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+}
+
+function ArrivalGroups() {
   return (
     <article className="md:border-r md:border-ink/10 md:pr-12">
       <p className="text-[0.7rem] uppercase tracking-[0.32em] text-forge">
@@ -46,62 +138,13 @@ function ArrivalGroups() {
       </div>
 
       <div className="mt-8 space-y-10">
-        {blocks.map((block) => (
-          <div
-            key={`arrival-${block.pickupTime}-${block.location}-${block.names[0]}`}
-            className="border-t border-ink/10 pt-5"
-          >
-            <p className="text-[1.05rem] tracking-wide text-forge sm:text-lg">
-              {block.pickupTime}
-            </p>
-            {block.location ? (
-              <p className="mt-2 font-display text-xl leading-snug text-ink sm:text-2xl">
-                {block.location}
-              </p>
-            ) : null}
-
-            {block.pickupPoint ? (
-              <p className="mt-4">
-                <span className="block text-[0.7rem] uppercase tracking-[0.22em] text-muted">
-                  {block.pickupPointLabel}
-                </span>
-                <span className="mt-1.5 block font-display text-xl leading-snug text-ink sm:text-2xl">
-                  {block.pickupPoint}
-                </span>
-              </p>
-            ) : null}
-
-            {block.mapUrl ? (
-              <a
-                href={block.mapUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-3 inline-block text-sm tracking-wide text-forge underline decoration-forge/30 underline-offset-4 transition-colors hover:decoration-forge"
-              >
-                {transfers.arrival.mapsLabel}
-              </a>
-            ) : null}
-
-            {block.meetingNote ? (
-              <p className="mt-4 max-w-md text-base leading-relaxed text-ink-soft">
-                {block.meetingNote}
-              </p>
-            ) : null}
-
-            <ul className="mt-5 space-y-1.5">
-              {block.names.map((name) => (
-                <li
-                  key={name}
-                  className="font-display text-2xl leading-snug text-ink sm:text-[1.85rem]"
-                >
-                  {name}
-                </li>
-              ))}
-            </ul>
-
-            <DriverContact name={block.driverName} phone={block.driverPhone} />
-          </div>
-        ))}
+        {transfers.arrivalGroups.map((group) =>
+          group.stops.length > 1 ? (
+            <MultiStopArrival key={group.id} group={group} />
+          ) : (
+            <SingleStopArrival key={group.id} group={group} />
+          ),
+        )}
       </div>
     </article>
   );
